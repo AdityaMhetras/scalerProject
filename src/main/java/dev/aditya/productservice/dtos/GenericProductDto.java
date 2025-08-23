@@ -1,15 +1,15 @@
-package dev.aditya.productservice.models;
+package dev.aditya.productservice.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product extends BaseModel {
+public class GenericProductDto {
 
     private String title;
+    private Double price;
     private String description;
+    private String category;
     private String image;
-    private Category category;
-    private double price;
 }
