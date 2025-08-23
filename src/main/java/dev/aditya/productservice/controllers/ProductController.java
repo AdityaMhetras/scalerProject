@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController()
@@ -29,7 +30,8 @@ public class ProductController {
     }*/
 
     @GetMapping
-    public void getAllProducts() {
+    public List<GenericProductDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     // localhost:8080/products/123
@@ -39,17 +41,17 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteProductById(String id) {
-
+    public void deleteProductById(@PathVariable("id") Long id) {
+        productService.deleteProductById(id);
     }
 
     @PostMapping
-    public String createProduct() {
-        return "Create product successfully, id: " + UUID.randomUUID();
+    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
+        return productService.createProduct(product);
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
-
+    public void updateProductById(@RequestBody GenericProductDto product, @PathVariable("id") long id) {
+        productService.updateProductById(product, id);
     }
 }
