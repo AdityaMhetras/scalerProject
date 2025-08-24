@@ -1,4 +1,4 @@
-package dev.aditya.productservice.dtos;
+package dev.aditya.productservice.thirdpartyclient.productsservice.fakestore;
 
 public class FakeStoreProductDto {
 

@@ -1,5 +1,6 @@
 package dev.aditya.productservice.services;
 
+import dev.aditya.productservice.thirdpartyclient.productsservice.fakestore.FakeStoreProductDto;
 import dev.aditya.productservice.dtos.GenericProductDto;
 
 import java.util.List;
