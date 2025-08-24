@@ -1,11 +1,15 @@
 package dev.aditya.productservice.controllers;
 
+import dev.aditya.productservice.dtos.ExceptionDto;
 import dev.aditya.productservice.dtos.GenericProductDto;
+import dev.aditya.productservice.exceptions.NotFoundException;
 import dev.aditya.productservice.models.Product;
 import dev.aditya.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,4 +58,5 @@ public class ProductController {
     public void updateProductById(@RequestBody GenericProductDto product, @PathVariable("id") long id) {
         productService.updateProductById(product, id);
     }
+
 }
