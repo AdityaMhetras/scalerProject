@@ -1,23 +1,20 @@
 package dev.aditya.productservice.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
-@Getter
-@Setter
+@Entity
 public class Product extends BaseModel {
 
     private String title;
     private String description;
     private String image;
+    /*
+    * 1 product : 1 Category
+    * many product : 1 category
+    * */
+    @ManyToOne
     private Category category;
     private double price;
 
-    public Product(String title, String description, String image, Category category, double price) {
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.category = category;
-        this.price = price;
-    }
 }
