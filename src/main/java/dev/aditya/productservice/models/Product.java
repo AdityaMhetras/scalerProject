@@ -17,4 +17,8 @@ public class Product extends BaseModel {
     private Category category;
     private double price;
 
+    public Category getCategory() {
+        return category;
+    }
+
 }
