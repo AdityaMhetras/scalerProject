@@ -1,17 +1,16 @@
 package dev.aditya.productservice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Product extends BaseModel {
 
     private String title;
@@ -22,7 +21,13 @@ public class Product extends BaseModel {
     * many product : 1 category
     * */
     @ManyToOne
+    @JoinColumn(name = "category")
     private Category category;
-    private double price;
+
+    @OneToOne
+    private Price price;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orders;
 
 }

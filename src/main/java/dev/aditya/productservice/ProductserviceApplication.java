@@ -1,8 +1,10 @@
 package dev.aditya.productservice;
 
 import dev.aditya.productservice.models.Category;
+import dev.aditya.productservice.models.Price;
 import dev.aditya.productservice.models.Product;
 import dev.aditya.productservice.repositories.CategoryRepository;
+import dev.aditya.productservice.repositories.PriceRepository;
 import dev.aditya.productservice.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.hibernate.Hibernate;
@@ -19,6 +21,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final PriceRepository priceRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(ProductserviceApplication.class, args);
@@ -31,20 +34,22 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         Category category = new Category();
         category.setName("Sample Category");
-
         Category savedCategory = categoryRepository.save(category);
+
+        Price price = new Price("Rupee", 10);
+        Price savedPrice =  priceRepository.save(price);
 
         Product product = new Product();
         product.setTitle("Sample Product");
         product.setDescription("Sample Description");
         product.setCategory(savedCategory);
-
+        product.setPrice(savedPrice);
         productRepository.save(product);
 
-        Category category1 =  categoryRepository.findById(UUID.fromString("d30a72ca-144d-4e34-a04e-70984495cbc1")).orElseThrow();
-
+        /*System.out.println("Category saved with ID: " + savedCategory.getUuid());
+        Category category1 =  categoryRepository.findById(savedCategory.getUuid()).orElseThrow();
+        System.out.println("category1: " + category1);
         System.out.println("Category Name: " + category1.getName());
-
         System.out.println("lazy check before: " + Hibernate.isInitialized(category1.getProducts())); // false if LAZY, true if EAGER
 
         // Access the collection to trigger loading (if LAZY)
@@ -54,6 +59,6 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         for (Product p : category1.getProducts()) {
             System.out.println("Product Title: " + p.getTitle());
-        }
+        }*/
     }
 }
