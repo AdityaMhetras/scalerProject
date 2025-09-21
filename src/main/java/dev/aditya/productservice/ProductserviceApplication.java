@@ -46,6 +46,14 @@ public class ProductserviceApplication implements CommandLineRunner {
         product.setPrice(price);
         productRepository.save(product);
 
+        UUID productId = UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb");
+        productRepository.findById(productId)
+                .ifPresentOrElse(
+                        productRepository::delete,
+                        () -> System.out.println("Product not found with id: ")
+                );
+//        productRepository.delete(productRepository.getById(UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb")));
+
         /*System.out.println("Category saved with ID: " + savedCategory.getUuid());
         Category category1 =  categoryRepository.findById(savedCategory.getUuid()).orElseThrow();
         System.out.println("category1: " + category1);
