@@ -34,16 +34,16 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         Category category = new Category();
         category.setName("Sample Category");
-        Category savedCategory = categoryRepository.save(category);
+//        Category savedCategory = categoryRepository.save(category);
 
         Price price = new Price("Rupee", 10);
-        Price savedPrice =  priceRepository.save(price);
+//        Price savedPrice =  priceRepository.save(price);
 
         Product product = new Product();
         product.setTitle("Sample Product");
         product.setDescription("Sample Description");
-        product.setCategory(savedCategory);
-        product.setPrice(savedPrice);
+        product.setCategory(category);
+        product.setPrice(price);
         productRepository.save(product);
 
         /*System.out.println("Category saved with ID: " + savedCategory.getUuid());

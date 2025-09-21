@@ -20,11 +20,11 @@ public class Product extends BaseModel {
     * 1 product : 1 Category
     * many product : 1 category
     * */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category")
     private Category category;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Price price;
 
     @ManyToMany(mappedBy = "products")
