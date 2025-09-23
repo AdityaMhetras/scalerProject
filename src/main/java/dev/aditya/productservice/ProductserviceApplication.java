@@ -7,13 +7,12 @@ import dev.aditya.productservice.repositories.CategoryRepository;
 import dev.aditya.productservice.repositories.PriceRepository;
 import dev.aditya.productservice.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.Hibernate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
+import java.util.List;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -46,12 +45,17 @@ public class ProductserviceApplication implements CommandLineRunner {
         product.setPrice(price);
         productRepository.save(product);
 
-        UUID productId = UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb");
+        List<Product> prWithDesc = productRepository.findAllByDescriptionEquals("Sample Description");
+
+        List<Product> prWithDescAndCurr = productRepository.findAllByDescriptionAndPrice_Currency("Sample Description", "Rupee");
+
+/*        UUID productId = UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb");
         productRepository.findById(productId)
                 .ifPresentOrElse(
                         productRepository::delete,
                         () -> System.out.println("Product not found with id: ")
-                );
+                );*/
+        /// /////////////////////
 //        productRepository.delete(productRepository.getById(UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb")));
 
         /*System.out.println("Category saved with ID: " + savedCategory.getUuid());
