@@ -49,6 +49,9 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         List<Product> prWithDescAndCurr = productRepository.findAllByDescriptionAndPrice_Currency("Sample Description", "Rupee");
 
+        List<Product> prWithTitle = productRepository.findAllByTitle("Sample Product");
+
+        System.out.println("Products with Description 'Sample Description': " + prWithDesc.size());
 /*        UUID productId = UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb");
         productRepository.findById(productId)
                 .ifPresentOrElse(
