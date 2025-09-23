@@ -6,13 +6,16 @@ import dev.aditya.productservice.models.Product;
 import dev.aditya.productservice.repositories.CategoryRepository;
 import dev.aditya.productservice.repositories.PriceRepository;
 import dev.aditya.productservice.repositories.ProductRepository;
+import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootApplication
 @AllArgsConstructor
@@ -21,6 +24,7 @@ public class ProductserviceApplication implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final PriceRepository priceRepository;
+    private final EntityManager entityManager;
 
     public static void main(String[] args) {
         SpringApplication.run(ProductserviceApplication.class, args);
@@ -29,7 +33,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 
     @Override
     @Transactional
-    public void run(String... args) {
+    public void run(String... args) throws InterruptedException {
 
         Category category = new Category();
         category.setName("Sample Category");
@@ -62,19 +66,23 @@ public class ProductserviceApplication implements CommandLineRunner {
         /// /////////////////////
 //        productRepository.delete(productRepository.getById(UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb")));
 
-        /*System.out.println("Category saved with ID: " + savedCategory.getUuid());
-        Category category1 =  categoryRepository.findById(savedCategory.getUuid()).orElseThrow();
-        System.out.println("category1: " + category1);
-        System.out.println("Category Name: " + category1.getName());
-        System.out.println("lazy check before: " + Hibernate.isInitialized(category1.getProducts())); // false if LAZY, true if EAGER
+//        Thread.sleep(1000);
+        entityManager.clear();
+        System.out.println("1. searching Category with ID: 93ec9e87-5cbe-4332-93b9-f4623366456e");
+        Category category1 =  categoryRepository.findById(UUID.fromString("93ec9e87-5cbe-4332-93b9-f4623366456e")).orElseThrow();
+//        System.out.println("category1: " + category1);
+        System.out.println("2. Category Name: " + category1.getName());
+
+//        Thread.sleep(1000);
+        System.out.println("is category1.getProducts() initialzed: " + Hibernate.isInitialized(category1.getProducts())); // false if LAZY, true if EAGER
 
         // Access the collection to trigger loading (if LAZY)
         System.out.println("Products in Category: " + category1.getProducts().size());
 
-        System.out.println("lazy check after: " + Hibernate.isInitialized(category1.getProducts())); // false if LAZY, true if EAGER
+        System.out.println("is category1.getProducts() initialzed2: " + Hibernate.isInitialized(category1.getProducts())); // true if initialized
 
         for (Product p : category1.getProducts()) {
             System.out.println("Product Title: " + p.getTitle());
-        }*/
+        }
     }
 }
