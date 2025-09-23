@@ -84,5 +84,17 @@ public class ProductserviceApplication implements CommandLineRunner {
         for (Product p : category1.getProducts()) {
             System.out.println("Product Title: " + p.getTitle());
         }
+
+        //N+1 Problem demonstration
+        entityManager.clear();
+        System.out.println("\nDemonstrating N+1 Problem:");
+        // Fetch all categories (1 query)
+        List<Category> categories = categoryRepository.findAll();
+
+        for (Category cat : categories) {
+            // For each category, accessing products triggers a separate query (N queries)
+            System.out.println("Products count: " + cat.getProducts().size());
+        }
+
     }
 }
