@@ -67,7 +67,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 //        productRepository.delete(productRepository.getById(UUID.fromString("65bdf0bc-3846-4138-a751-5e84710f6ebb")));
 
 //        Thread.sleep(1000);
-        entityManager.clear();
+        /*entityManager.clear();
         System.out.println("1. searching Category with ID: 93ec9e87-5cbe-4332-93b9-f4623366456e");
         Category category1 =  categoryRepository.findById(UUID.fromString("93ec9e87-5cbe-4332-93b9-f4623366456e")).orElseThrow();
 //        System.out.println("category1: " + category1);
@@ -83,7 +83,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         for (Product p : category1.getProducts()) {
             System.out.println("Product Title: " + p.getTitle());
-        }
+        }*/
 
         //N+1 Problem demonstration
         entityManager.clear();
