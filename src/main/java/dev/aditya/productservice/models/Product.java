@@ -29,4 +29,8 @@ public class Product extends BaseModel {
     @ManyToMany(mappedBy = "products")
     private List<Order> orders;
 
+    private int inventoryCount;
+
+    private int inventoryCount2;
+
 }
