@@ -1,19 +1,12 @@
 package dev.aditya.productservice.controllers;
 
-import dev.aditya.productservice.dtos.ExceptionDto;
 import dev.aditya.productservice.dtos.GenericProductDto;
-import dev.aditya.productservice.exceptions.NotFoundException;
-import dev.aditya.productservice.models.Product;
 import dev.aditya.productservice.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController()
 @RequestMapping("/api/v1/products")
@@ -35,7 +28,12 @@ public class ProductController {
 
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
-        return productService.getAllProducts();
+//        return productService.getAllProducts();
+        List<GenericProductDto> genericProductDtoList = productService.getAllProducts();
+        List<GenericProductDto> copyList = new ArrayList<>(genericProductDtoList);
+        copyList.remove(0);
+        return copyList;
+
     }
 
     // localhost:8080/products/123
