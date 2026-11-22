@@ -5,7 +5,6 @@ import dev.aditya.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -28,12 +27,7 @@ public class ProductController {
 
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
-//        return productService.getAllProducts();
-        List<GenericProductDto> genericProductDtoList = productService.getAllProducts();
-        List<GenericProductDto> copyList = new ArrayList<>(genericProductDtoList);
-        copyList.remove(0);
-        return copyList;
-
+        return productService.getAllProducts();
     }
 
     // localhost:8080/products/123

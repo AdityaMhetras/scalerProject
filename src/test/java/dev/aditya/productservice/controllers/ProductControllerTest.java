@@ -59,8 +59,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("1 + 1 equals 2")
     void onePlusOneEqualsTwo() {
-        System.out.println("it is true");
-        assertEquals(11, 1 + 1, "1 + 1 is not 11");
+        assertEquals(2, 1 + 1, "1 + 1 should equal 2");
         assertThrows(NullPointerException.class, () -> {;
             String str = null;
             str.length();

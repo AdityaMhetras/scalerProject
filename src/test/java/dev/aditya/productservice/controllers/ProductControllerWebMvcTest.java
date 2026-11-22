@@ -44,7 +44,7 @@ public class ProductControllerWebMvcTest {
         when(productService.getAllProducts()).thenReturn(new ArrayList<>());
 
         mockMvc.perform(get("/api/v1/products"))
-                .andExpect(status().is3xxRedirection())
+                .andExpect(status().isOk())
                 .andExpect(content().string("[]"));
     }
 
